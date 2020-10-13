@@ -56,9 +56,9 @@ fn process(data: &[u8], add_lines: bool) -> Vec<u8> {
 				let (dl, dv) = lv(dst);
 				let (jl, jv) = lv(jmp);
 				vec.extend_from_slice(&if add_lines {
-					format!("{} dq {}\n{} dq{}\n{} dq {}\n", sl, sv, dl, dv, jl, jv)
+					format!(";   LINE: {}\n{} dq {}\n{} dq {}\n{} dq {}\n", line_n, sl, sv, dl, dv, jl, jv)
 				} else {
-					format!(";   LINE: {}\n{} dq {}\n{} dq{}\n{} dq {}\n", line_n, sl, sv, dl, dv, jl, jv)
+					format!("{} dq {}\n{} dq {}\n{} dq {}\n", sl, sv, dl, dv, jl, jv)
 				}.as_bytes());
 			}
 		}
