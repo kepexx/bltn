@@ -52,14 +52,28 @@ fn process(data: &[u8], add_lines: bool) -> Vec<u8> {
 				let src = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing src", line_n))).unwrap();
 				let dst = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing dst", line_n))).unwrap();
 				let jmp = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing jmp", line_n))).unwrap();
+				let (sl, sv) = lv(src);
+				let (dl, dv) = lv(dst);
+				let (jl, jv) = lv(jmp);
 				vec.extend_from_slice(&if add_lines {
-					format!("dq {}\ndq{}\ndq {}\n", src, dst, jmp)
+					format!("{} dq {}\n{} dq{}\n{} dq {}\n", sl, sv, dl, dv, jl, jv)
 				} else {
-					format!(";   LINE: {}\ndq {}\ndq{}\ndq {}\n", line_n, src, dst, jmp)
+					format!(";   LINE: {}\n{} dq {}\n{} dq{}\n{} dq {}\n", line_n, sl, sv, dl, dv, jl, jv)
 				}.as_bytes());
 			}
 		}
 
 	}
 	vec
+}
+
+fn lv(src: &str) -> (&str, &str) {
+	let mut s = src.split(|x| x == ':');
+	let sl = s.next().unwrap();
+	let sv = s.next();
+	if let Some(sv) = sv {
+		(sl, sv)
+	} else {
+		("", sl)
+	}
 }
