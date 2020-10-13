@@ -7,3 +7,5 @@ The "add lines" option adds comments to the resulting output showing the lines o
 
 # What?
 `bltn` is used to generate files which can be processed using `nasm -fbin` to create BBJ files for use with `bino` or other interpreters.
+
+The official extension for bltn files is `.bl` or `.bltn` (former preferred)
