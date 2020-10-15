@@ -21,8 +21,8 @@ fn main() {
 fn process(data: &[u8], add_lines: bool) -> Vec<u8> {
 	let mut vec = Vec::with_capacity(data.len() * 2);
 	let lines = data.split(|&x| x == b'\n');
-	for (line_n, line) in lines.enumerate() {
-		let mut args = line.split(|x| x.is_ascii_whitespace());
+	for (mut line_n, line) in lines.enumerate() {
+		line_n += 1;
 		if !line.is_empty() {
 			if line[0] == b'%' {
 				if add_lines {
@@ -49,6 +49,7 @@ fn process(data: &[u8], add_lines: bool) -> Vec<u8> {
 					vec.extend_from_slice(&line[1..]);
 				}
 			} else {
+				let mut args = line.split(|x| x.is_ascii_whitespace());
 				let src = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing src", line_n))).unwrap();
 				let dst = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing dst", line_n))).unwrap();
 				let jmp = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing jmp", line_n))).unwrap();
