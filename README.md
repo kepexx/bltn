@@ -1,5 +1,5 @@
 # bltn
-Basic Language To NWCTB
+Basic Language To NWCTB (`nasm` which compiles to BBJ (wow thats alot of acronyms))
 
 Usage: `bltn <in> <out> [add lines|false]`
 
