@@ -1,9 +1,9 @@
 # bltn
 Basic Language To NWCTB
 
-Usage: `bltn <in> <out> [add lines|false]`
+Usage: `bltn <in> <out> [add lines|false] [file identifier|<in>]`
 
-The "add lines" option adds comments to the resulting output showing the lines of bltn corresponding to the output, for debugging
+The "add lines" option adds comments to the resulting output showing the lines of bltn corresponding to the output, for debugging. The file identifier is used for the initial #ifndef check (like C headers)
 
 # What?
 `bltn` is used to generate files which can be processed using `nasm -fbin` to create BBJ files for use with `bino` or other interpreters.
