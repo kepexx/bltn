@@ -31,7 +31,8 @@ fn process(data: &[u8], file_ident: &str, file_path: &str, add_lines: bool) -> V
 			"%ifndef BLTN_D\n",
 			"%define BLTN_D dq\n",
 			"%define BLTN_WORD_SIZE 8\n",
-			"%endif\n", file_ident, file_ident
+			"%endif\n"
+		), file_ident, file_ident
 	).as_bytes());
 	let lines = data.split(|&x| x == b'\n');
 	for (mut line_n, line) in lines.enumerate() {
