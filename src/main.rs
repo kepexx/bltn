@@ -66,7 +66,7 @@ fn process(data: &[u8], file_ident: &str, file_path: &str, add_lines: bool) -> V
 				let mut args = line.split(|x| x.is_ascii_whitespace());
 				let src = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing src", line_n))).unwrap();
 				let dst = std::str::from_utf8(args.next().expect(&format!("error on line {}: missing dst", line_n))).unwrap();
-				let jmp = args.next().map(|x| std::str::from_utf8(x).unwrap()).unwrap_or("($-$$)+BLTN_WORD_SIZE");
+				let jmp = args.next().map(|x| std::str::from_utf8(x).unwrap()).unwrap_or("$+BLTN_WORD_SIZE");
 				let (sl, sv) = lv(src);
 				let (dl, dv) = lv(dst);
 				let (jl, jv) = lv(jmp);
